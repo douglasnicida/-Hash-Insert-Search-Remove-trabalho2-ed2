@@ -303,11 +303,7 @@ void remover (FILE *arqRemover, FILE *arqHash) {
     endereco = calcularEnderecoHash(chave);
     offset = endereco * TAM_HASH;
 
-    printf("chave q ta querendo remover: %s\n", chave);
-
-    printf("%d\n", offset);
     fseek(arqHash, offset, SEEK_SET);
-    printf("%d\n", offset);
 
     while (1) {
     	printf("%lu\n", ftell(arqHash));
@@ -319,11 +315,7 @@ void remover (FILE *arqRemover, FILE *arqHash) {
 
         fseek(arqHash, sizeof (int), SEEK_CUR);
 
-        printf("ftellzada: %ld\n", ftell(arqHash));
-
         fread(chaveArqHash, TAM_CHAVE, 1, arqHash);
-
-        printf("chave arq hash: %s\n", chaveArqHash);
 
         if(strcmp(chave, chaveArqHash) != 0) {
             fseek(arqHash, sizeof(int), 1);
@@ -409,8 +401,6 @@ void buscar(FILE *arqBuscar, FILE *arqHash, FILE *arqDados) {
 
             break;
         } else {
-            printf("chave arq hash: %s\n", chaveArqHash);
-            printf("passou no else!\n");
             fseek(arqHash, sizeof(int), SEEK_CUR);
             ctAcessos++;
         }
